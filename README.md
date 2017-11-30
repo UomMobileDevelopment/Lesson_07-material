@@ -216,7 +216,7 @@ passing it the URI it needs to pass to the content provider to get the correct d
 
 1. Add OnItemClickListener to ListView
 
-In ForecastFragment, in the onCreateView method, go ahead and add an onItemClickListener, 
+In ForecastFragment, in the onCreateView method, go ahead and add an ```onItemClickListener```, 
 except this time, it’s going to pass a URI for the data needed for the detail view.
 
 ```
@@ -241,8 +241,8 @@ except this time, it’s going to pass a URI for the data needed for the detail 
 
 2. Print the URI in the ListView
 
-On the DetailActivity side, we'll want to change the code, which is referring to an 
-intent extra that you're no longer setting. Instead we used setData so we need to grab this data using getDataString. 
+On the ```DetailActivity``` side, we'll want to change the code, which is referring to an 
+intent extra that you're no longer setting. Instead we used setData so we need to grab this data using ```getDataString```. 
 
 The full code you'll need to put in DetailActivity is:
 
