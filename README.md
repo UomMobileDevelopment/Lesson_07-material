@@ -36,7 +36,8 @@ As mentioned in the previous node, we’re going to be adding a CursorAdapter to
 For now, we’re not going to worry about the Loader and we're just going to change our code to use a more appropriate adapter. Right now, you might recall from lesson 1, we’re using an ArrayAdapter. This ArrayAdapter is populated only when we’re syncing with OpenWeatherMapAPI. Basically we get the JSON, put it in the content provider, take it out again, and change it to an array. This is not ideal. Let’s fix all of this.
 
 We’ll talk more about making an adapter in Lesson 5, for now, we’re going to give you the code for one and do a quick overview.
-Go ahead and copy ForecastAdapter and Utility.java into the main package (example.android.com) of your code.
+
+### Go ahead and copy [ForecastAdapter](https://github.com/udacity/Sunshine-Version-2/blob/4.18_cursor_adapter/app/src/main/java/com/example/android/sunshine/app/ForecastAdapter.java) and [Utility.java](https://github.com/udacity/Sunshine-Version-2/blob/4.18_cursor_adapter/app/src/main/java/com/example/android/sunshine/app/Utility.java) into the main package (example.android.com) of your code.
 
 ## What’s going inside ForecastAdapter
 
