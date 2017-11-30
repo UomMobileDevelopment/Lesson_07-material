@@ -202,9 +202,12 @@ private String convertCursorRowToUXFormat(Cursor cursor) {
                 " - " + cursor.getString(ForecastFragment.COL_WEATHER_DESC) +
                 " - " + highAndLow;
     }
-``` 
+
+```
+
  
 # Make Details View Functional
+
 
 One of the things that we decided to temporarily break is the details view. 
 It’s time to fix this and hook things up.
