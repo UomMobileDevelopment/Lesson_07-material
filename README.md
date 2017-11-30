@@ -37,23 +37,25 @@ Go ahead and copy ForecastAdapter and Utility.java into the main package (exampl
 
 ForecastAdapter is a subclass of CursorAdapter. Let’s take a quick look at the functionality we’ve got in here. After the constructor, there are four methods. The first two are formatHighLows and convertCursorRowToUXFormat. These are two formatting methods specific to Sunshine.
 
-•	convertCursorRowToUXFormat takes a row from a cursor and constructs a single string of the format:
-
-Date - Weather -- High/Low
+- convertCursorRowToUXFormat takes a row from a cursor and constructs a single string of the format: Date - Weather -- High/Low
 This is the string we’re used to seeing in the listview element. It uses formatHighLow to get the correct string for the temperature.
 The other two methods are necessary to override whenever you’re extending a cursor adapter.
-•	newView - Remember that adapters work with listviews to populate them. They create duplicates of the same layout to put into the list view. This is where you return what layout is going to be duplicated.
 
-•	View view = LayoutInflater.from(context).inflate(R.layout.list_item_forecast, parent, false);
-•	return view;
+- newView - Remember that adapters work with listviews to populate them. They create duplicates of the same layout to put into the list view. This is where you return what layout is going to be duplicated.
+
+- View view = LayoutInflater.from(context).inflate(R.layout.list_item_forecast, parent, false);
+- return view;
 
 In our case, we’re inflating our listview layout, list_item_forecast, and then returning it.
 
-•	bindView - This is where the exciting bit occurs. As the name suggests you are binding the values in the cursor to the view.
-•	TextView tv = (TextView)view;
-•	tv.setText(convertCursorRowToUXFormat(cursor));
+- bindView - This is where the exciting bit occurs. As the name suggests you are binding the values in the cursor to the view.
+
+- TextView tv = (TextView)view;
+
+- tv.setText(convertCursorRowToUXFormat(cursor));
 
 The View passed into bindView is the View returned from newView. We know it’s a TextView, so we cast it. Then we take the Cursor, run it through our custom made formatting function, and set the text of the TextView.
+
 
 ## Refactoring to use ForecastAdapter with Cursors and from the Fragment
 
@@ -74,21 +76,38 @@ Let’s go to where we first need to populate the ForecastFragment with data and
 ```
                 
 3. Make a new ForecastAdapter
+
 Still in onCreateView, we have a Cursor cur, so let’s use our new ForecastAdapter. Create a new ForecastAdapter with the new cursor. The list will be empty the first time we run.
+
 mForecastAdapter = new ForecastAdapter(getActivity(), cur, 0);
 
 4. Delete OnItemClickListener
-Because we changed the adapter, the OnItemClickListener in ForecastFragment for the ListView won’t work. Specifically this line String forecast = mForecastAdapter.getItem(position); is problematic because getItem with a CursorAdapter doesn’t return a string.
+
+Because we changed the adapter, the OnItemClickListener in ForecastFragment for the ListView won’t work. 
+Specifically this line 
+``` String forecast = mForecastAdapter.getItem(position);```
+is problematic because getItem with a CursorAdapter doesn’t return a string.
+
 Go ahead and remove or comment out this for now.
+
 We’ll talk more about this and correct this soon enough. Until then, our code will compile and run but not have access to our DetailView.
 
 5. Clean up
-Inside of FetchWeatherTask, we’re going to remove the formatting code and anything for updating the adapter. You can remove:
-•	Any reference to mForecastAdapter
-•	getReadableDateString, formatHighLows, convertContentValuesToUXFormat. These are all formatting functions and we’ve moved them to the ForecastAdapter.
-•	The lines in getWeatherDataFromJson where we requery the database after the insert.
-•	PostExecute
+
+Inside of FetchWeatherTask, we’re going to remove the formatting code and anything for updating the adapter. _You can remove:_
+
+- Any reference to mForecastAdapter
+
+- getReadableDateString, formatHighLows, convertContentValuesToUXFormat. These are all formatting functions and we’ve moved them to the ForecastAdapter.
+
+- The lines in getWeatherDataFromJson where we requery the database after the insert.
+
+- PostExecute
+
 Note: To keep your tests working, you'll need to modify line 42 of TestFetchWeatherTask to be:
-FetchWeatherTask fwt = new FetchWeatherTask(getContext());
+
+``` FetchWeatherTask fwt = new FetchWeatherTask(getContext()); ```
+
+
 
 
