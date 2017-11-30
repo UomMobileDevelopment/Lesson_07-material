@@ -26,6 +26,12 @@ android {
 ```
 
 
+=================================================================================================
+
+
+# Moving to Cursor Adapter
+
+
 As mentioned in the previous node, we’re going to be adding a CursorAdapter to Sunshine called ForecastAdapter. Why? Well, our loader will be making the calls on our content provider to get a Cursorand we’ll want to take the data from that cursor and put it into our UI. This is what adapters are meant for, associating data with UI components.
 
 For now, we’re not going to worry about the Loader and we're just going to change our code to use a more appropriate adapter. Right now, you might recall from lesson 1, we’re using an ArrayAdapter. This ArrayAdapter is populated only when we’re syncing with OpenWeatherMapAPI. Basically we get the JSON, put it in the content provider, take it out again, and change it to an array. This is not ideal. Let’s fix all of this.
