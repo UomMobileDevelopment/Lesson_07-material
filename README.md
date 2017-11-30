@@ -144,7 +144,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithStartDate(
                 locationSetting, System.currentTimeMillis());
         return new CursorLoader(getActivity(),
-                weatherForLocationUri,                null,                null,                null,                sortOrder);
+                weatherForLocationUri,  null, null, null, sortOrder);
     }
 
     @Override
@@ -206,12 +206,15 @@ private String convertCursorRowToUXFormat(Cursor cursor) {
  
 # Make Details View Functional
 
-One of the things that we decided to temporarily break is the details view. It’s time to fix this and hook things up.
-The major change we will make here is that we will start our DetailsActivity by passing it the URI it needs to pass to the content provider to get the correct data.
+One of the things that we decided to temporarily break is the details view. 
+It’s time to fix this and hook things up.
+The major change we will make here is that we will start our DetailsActivity by 
+passing it the URI it needs to pass to the content provider to get the correct data.
 
 1. Add OnItemClickListener to ListView
 
-In ForecastFragment, in the onCreateView method, go ahead and add an onItemClickListener, except this time, it’s going to pass a URI for the data needed for the detail view.
+In ForecastFragment, in the onCreateView method, go ahead and add an onItemClickListener, 
+except this time, it’s going to pass a URI for the data needed for the detail view.
 
 ```
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -235,7 +238,10 @@ In ForecastFragment, in the onCreateView method, go ahead and add an onItemClick
 
 2. Print the URI in the ListView
 
-On the DetailActivity side, we'll want to change the code, which is referring to an intent extra that you're no longer setting. Instead we used setData so we need to grab this data using getDataString. The full code you'll need to put in DetailActivity is:
+On the DetailActivity side, we'll want to change the code, which is referring to an 
+intent extra that you're no longer setting. Instead we used setData so we need to grab this data using getDataString. 
+
+The full code you'll need to put in DetailActivity is:
 
 ```
        if (intent != null) {
@@ -245,7 +251,9 @@ On the DetailActivity side, we'll want to change the code, which is referring to
 
 This causes the detail view to show the URI.
 
-But wait, that's not what we want! So obviously we’re not done at this point, we need to actually use the URI to display the correct data in the detail view. You’ll be doing that in the next node.
+But wait, that's not what we want! So obviously we’re not done at this point, 
+we need to actually use the URI to display the correct data in the detail view. 
+You’ll be doing that in the next node.
 
 Check out the full diff [here](https://github.com/udacity/Sunshine-Version-2/compare/4.20_projections...4.21_details_view)
  
