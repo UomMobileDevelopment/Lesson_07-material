@@ -231,7 +231,8 @@ In ForecastFragment, in the onCreateView method, go ahead and add an onItemClick
                 }
             }
         });
-        ```
+```
+
 2. Print the URI in the ListView
 
 On the DetailActivity side, we'll want to change the code, which is referring to an intent extra that you're no longer setting. Instead we used setData so we need to grab this data using getDataString. The full code you'll need to put in DetailActivity is:
@@ -241,11 +242,12 @@ On the DetailActivity side, we'll want to change the code, which is referring to
            mForecastStr = intent.getDataString();
        }
 ```
+
 This causes the detail view to show the URI.
 
 But wait, that's not what we want! So obviously we’re not done at this point, we need to actually use the URI to display the correct data in the detail view. You’ll be doing that in the next node.
 
-Check out the full diff (here)[https://github.com/udacity/Sunshine-Version-2/compare/4.20_projections...4.21_details_view].
+Check out the full diff [here](https://github.com/udacity/Sunshine-Version-2/compare/4.20_projections...4.21_details_view)
  
  
 # Implement Details View as Cursor Loader (+use Projections)
