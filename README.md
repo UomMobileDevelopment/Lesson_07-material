@@ -35,7 +35,7 @@ As mentioned in the previous node, we’re going to be adding a CursorAdapter to
 
 For now, we’re not going to worry about the Loader and we're just going to change our code to use a more appropriate adapter. Right now, you might recall from lesson 1, we’re using an ArrayAdapter. This ArrayAdapter is populated only when we’re syncing with OpenWeatherMapAPI. Basically we get the JSON, put it in the content provider, take it out again, and change it to an array. This is not ideal. Let’s fix all of this.
 
-We’ll talk more about making an adapter in Lesson 5, for now, we’re going to give you the code for one and do a quick overview.
+
 
 ### Go ahead and copy [ForecastAdapter](https://github.com/udacity/Sunshine-Version-2/blob/4.18_cursor_adapter/app/src/main/java/com/example/android/sunshine/app/ForecastAdapter.java) and [Utility.java](https://github.com/udacity/Sunshine-Version-2/blob/4.18_cursor_adapter/app/src/main/java/com/example/android/sunshine/app/Utility.java) into the main package (example.android.com) of your code.
 
@@ -44,6 +44,7 @@ We’ll talk more about making an adapter in Lesson 5, for now, we’re going to
 ForecastAdapter is a subclass of CursorAdapter. Let’s take a quick look at the functionality we’ve got in here. After the constructor, there are four methods. The first two are formatHighLows and convertCursorRowToUXFormat. These are two formatting methods specific to Sunshine.
 
 - convertCursorRowToUXFormat takes a row from a cursor and constructs a single string of the format: Date - Weather -- High/Low
+
 This is the string we’re used to seeing in the listview element. It uses formatHighLow to get the correct string for the temperature.
 The other two methods are necessary to override whenever you’re extending a cursor adapter.
 
@@ -69,7 +70,9 @@ The View passed into bindView is the View returned from newView. We know it’s 
 Change mForecastAdapter, to be an instance of ForecastAdapter.
 
 2. Get Data from the Database
+
 Let’s go to where we first need to populate the ForecastFragment with data and do so by getting the data from the database. Go to onCreateView. Use WeatherProvider to query the database the same way you are in FetchWeatherTask:
+
 ```
      String locationSetting = Utility.getPreferredLocation(getActivity());
         // Sort order:  Ascending, by date.
