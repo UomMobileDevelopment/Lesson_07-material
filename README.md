@@ -190,6 +190,10 @@ Inside of FetchWeatherTask, we’re going to remove the formatting code and anyt
 
 - PostExecute
 
+
+###  Make sure you have updated FetchWeather task and that is like then one [here](https://github.com/udacity/Sunshine-Version-2/blob/4.20_projections/app/src/main/java/com/example/android/sunshine/app/FetchWeatherTask.java)
+
+
 Note: To keep your tests working, you'll need to modify line 42 of TestFetchWeatherTask to be:
 
 ``` FetchWeatherTask fwt = new FetchWeatherTask(getContext()); ```
